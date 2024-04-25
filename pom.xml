@@ -40,26 +40,6 @@
                 <artifactId>kubernetes-client-api</artifactId>
                 <version>${fabric8-client.version}</version>
             </dependency>
-            <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>kubernetes-model-core</artifactId>
-                <version>${fabric8-client.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>kubernetes-model-networking</artifactId>
-                <version>${fabric8-client.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>kubernetes-model-common</artifactId>
-                <version>${fabric8-client.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>kubernetes-model-apiextensions</artifactId>
-                <version>${fabric8-client.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -101,9 +81,38 @@
             <version>${okhttp.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.strimzi</groupId>
-            <artifactId>api</artifactId>
-            <version>${strimzi.version}</version>
+            <groupId>io.sundr</groupId>
+            <artifactId>builder-annotations</artifactId>
+            <version>0.103.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>java-generator-maven-plugin</artifactId>
+                <version>${fabric8-client.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <source>src/main/resources/k8s</source>
+                    <extraAnnotations>true</extraAnnotations>
+                    <alwaysPreserveUnknown>true</alwaysPreserveUnknown>
+                    <target>src/main/java</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
