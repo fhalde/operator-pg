@@ -1,5 +1,5 @@
 /* (C)2024 */
-package hello.world.operator.slope.customresources;
+package hello.world.operator.helloworld.customresources;
 
 import io.fabric8.kubernetes.api.model.Namespaced;
 import io.fabric8.kubernetes.client.CustomResource;

@@ -1,4 +1,4 @@
-package hello.world.operator.slope.customresources;
+package hello.world.operator;
 
 import io.fabric8.kubernetes.api.model.HasMetadata;
 
@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface ReferredKind {
+@Target(ElementType.TYPE)
+public @interface KindClass {
     Class<? extends HasMetadata> value();
 }
