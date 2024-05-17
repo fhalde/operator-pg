@@ -1,12 +1,14 @@
 /* (C)2024 */
 package hello.world.operator.slope.customresources;
 
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import io.fabric8.generator.annotation.Required;
+import io.fabric8.kubernetes.api.model.ConfigMap;
 
-import java.util.List;
+public class HelloWorldSpec {
 
-public record HelloWorldSpec(
     @Required
-    @JsonPropertyDescription("??")
-    List<String> description) {}
+    @ReferredKind(ConfigMap.class)
+    public Ref configRef;
+
+    public String description;
+}
